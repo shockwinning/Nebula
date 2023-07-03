@@ -2523,8 +2523,7 @@ local function getObjGen()
     function objGen.new(objectType, cheatName)
         if objectType == "Cheat" then
             if script.Cheats:FindFirstChild(cheatName) then
-                print("CHEATTABLE", script.Cheats:FindFirstChild(cheatName))
-                return script.Cheats:FindFirstChild(cheatName):Clone()
+                return script.Cheats[cheatName]:Clone()
             else
                 error("Invalid cheatType")
             end
@@ -2535,7 +2534,7 @@ local function getObjGen()
 end
 
 local objectGenerator = getObjGen()
-print("OBJECTGEN", objectGenerator)
+
 
 local function initUtils()
     local utils = {}
@@ -3236,16 +3235,13 @@ end
 function UILibrary.new(gameName, userId, rank)
     local GUI = Instance.new("ScreenGui")
     getgenv().Nebula_GUI = GUI
-    GUI.Name = string.gsub(HttpService:GenerateGUID(false), "-", "")
+    GUI.Name = HttpService:GenerateGUID(false)
     GUI.Parent =
         RunService:IsStudio() == false and game:GetService("CoreGui") or LocalPlayer:WaitForChild("PlayerGui")
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
-    print("OBJECTGEN", objectGenerator)
-    local window = objectGenerator.new("Cheat", "Window")
-    print('WINDOW', window, window:GetFullName())
-    print("GUI", GUI, GUI:GetFullName())
+    local window = objectGenerator.new("Window")
     window.Parent = GUI
 
     --// make UI draggable
@@ -3297,10 +3293,7 @@ function UILibrary.Window:Notification(sett)
     local Notif = objectGenerator.new("Notification").Main
 
     Notif.Size = UDim2.new(1, 0, 1, -5)
-
-    GUI.Parent = nil
     Notif:FindFirstChildOfClass("UIAspectRatioConstraint"):Destroy()
-    task.delay(0.1, function() GUI.Parent = ProtectedParent() end)
 
     local ui = self.MainUI.Notifications
 
@@ -4111,7 +4104,7 @@ local function generateCheatBase(Cheat, sett)
     if Content then
         Content.Parent = cheatBase.Content.ElementContent
     end
-    
+
     return cheatBase
 end
 
