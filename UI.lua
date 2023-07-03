@@ -3235,7 +3235,7 @@ end
 function UILibrary.new(gameName, userId, rank)
     getgenv().GUI = Instance.new("ScreenGui")
     if syn and syn.protect_gui then
-        syn.protect_gui(GUI)
+        --syn.protect_gui(GUI)
     end
     GUI.Name = string.gsub(HttpService:GenerateGUID(false), "-", "")
     GUI.ResetOnSpawn = false
