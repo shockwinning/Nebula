@@ -3238,8 +3238,6 @@ function UILibrary.new(gameName, userId, rank)
         syn.protect_gui(GUI)
     end
     GUI.Name = string.gsub(HttpService:GenerateGUID(false), "-", "")
-    local ProtectedParent = gethui or get_hidden_ui or function() return game:GetService("CoreGui") end
-    GUI.Parent = ProtectedParent()
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
@@ -4106,7 +4104,10 @@ local function generateCheatBase(Cheat, sett)
     if Content then
         Content.Parent = cheatBase.Content.ElementContent
     end
-
+    
+    local ProtectedParent = gethui or get_hidden_ui or function() return game:GetService("CoreGui") end
+    GUI.Parent = ProtectedParent()
+    
     return cheatBase
 end
 
