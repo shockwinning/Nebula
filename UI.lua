@@ -2523,7 +2523,7 @@ local function getObjGen()
     function objGen.new(objectType, cheatName)
         if objectType == "Cheat" then
             if script.Cheats:FindFirstChild(cheatName) then
-                print(script.Cheats:FindFirstChild(cheatName))
+                print("CHEATTABLE", script.Cheats:FindFirstChild(cheatName))
                 return script.Cheats:FindFirstChild(cheatName):Clone()
             else
                 error("Invalid cheatType")
@@ -3242,8 +3242,10 @@ function UILibrary.new(gameName, userId, rank)
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
+    print("OBJECTGEN", objectGenerator)
     local window = objectGenerator.new("Window")
-    print
+    print('WINDOW', window, window:GetFullName())
+    print("GUI", GUI, GUI:GetFullName())
     window.Parent = GUI
 
     --// make UI draggable
