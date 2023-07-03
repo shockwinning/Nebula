@@ -3243,7 +3243,7 @@ function UILibrary.new(gameName, userId, rank)
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
     print("OBJECTGEN", objectGenerator)
-    local window = objectGenerator.new("Window")
+    local window = objectGenerator.new("Cheat", "Window")
     print('WINDOW', window, window:GetFullName())
     print("GUI", GUI, GUI:GetFullName())
     window.Parent = GUI
