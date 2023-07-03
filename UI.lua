@@ -3233,10 +3233,8 @@ for i, v in pairs(UILibNames) do
 end
 
 function UILibrary.new(gameName, userId, rank)
-    getgenv().GUI = Instance.new("ScreenGui")
-    if syn and syn.protect_gui then
-        syn.protect_gui(GUI)
-    end
+    local GUI = Instance.new("ScreenGui")
+    getgenv().Nebula_GUI = GUI
     GUI.Name = string.gsub(HttpService:GenerateGUID(false), "-", "")
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
