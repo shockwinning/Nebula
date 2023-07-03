@@ -3235,6 +3235,7 @@ end
 function UILibrary.new(gameName, userId, rank)
     local GUI = Instance.new("ScreenGui")
     getgenv().Nebula_GUI = GUI
+    GUI.Parent = game:GetService("CoreGui")
     GUI.Name = string.gsub(HttpService:GenerateGUID(false), "-", "")
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
