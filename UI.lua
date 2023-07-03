@@ -3233,7 +3233,7 @@ for i, v in pairs(UILibNames) do
 end
 
 function UILibrary.new(gameName, userId, rank)
-    local GUI = Instance.new("ScreenGui")
+    getgenv().GUI = Instance.new("ScreenGui")
     if syn and syn.protect_gui then
         syn.protect_gui(GUI)
     end
@@ -3293,7 +3293,10 @@ function UILibrary.Window:Notification(sett)
     local Notif = objectGenerator.new("Notification").Main
 
     Notif.Size = UDim2.new(1, 0, 1, -5)
+
+    GUI.Parent = nil
     Notif:FindFirstChildOfClass("UIAspectRatioConstraint"):Destroy()
+    task.delay(0.1, function() GUI.Parent = ProtectedParent() end)
 
     local ui = self.MainUI.Notifications
 
@@ -4104,9 +4107,6 @@ local function generateCheatBase(Cheat, sett)
     if Content then
         Content.Parent = cheatBase.Content.ElementContent
     end
-    
-    local ProtectedParent = gethui or get_hidden_ui or function() return game:GetService("CoreGui") end
-    GUI.Parent = ProtectedParent()
     
     return cheatBase
 end
