@@ -3240,7 +3240,10 @@ function UILibrary.new(gameName, userId, rank)
         RunService:IsStudio() == false and game:GetService("CoreGui") or LocalPlayer:WaitForChild("PlayerGui")
     GUI.ResetOnSpawn = false
     GUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
-
+    print(script.Cheats:GetFullName())
+    for i3,v3 in pairs(script.Cheats:GetChildren()) do
+        print(i3,v3)
+    end
     local window = objectGenerator.new("Window")
     window.Parent = GUI
 
